@@ -99,16 +99,3 @@ const server = http.createServer(async (request, response) => {
       return sendJson(response, 400, { error: "deviceId query parameter is required" });
     }
 
-    const status = wifiStatuses.get(deviceId);
-    if (!status) {
-      return sendJson(response, 404, { error: "Device status not found" });
-    }
-    return sendJson(response, 200, { ok: true, status });
-  }
-
-  return sendJson(response, 404, { error: "Not found" });
-});
-
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(`ESP32 Wi-Fi status API listening on port ${PORT}`);
-});
